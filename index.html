@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Local only: files may load only from this folder; every network request is blocked. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' file:; style-src 'self' file: 'unsafe-inline'; img-src 'self' file: data:; connect-src 'none'; font-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code highlighter for Word</title>
+<link rel="stylesheet" href="css/app.css">
+<!-- The selected highlight.js theme is loaded here -->
+<link rel="stylesheet" id="theme">
+</head>
+<body class="loading">
+<div class="wrap">
+  <header>
+    <h1>Code highlighter for Word</h1>
+    <p>Paste code, pick a language and theme, then copy it into Word with its colors. Everything runs from this folder, and its security policy blocks all network access, so your code never leaves your machine.</p>
+  </header>
+
+  <main>
+    <section class="panel" aria-labelledby="code-h">
+      <div class="panel-head">
+        <h2 id="code-h">Code</h2>
+        <label class="field">Language
+          <select id="lang"></select>
+        </label>
+      </div>
+      <textarea id="src" spellcheck="false" autocomplete="off" autocapitalize="off" aria-label="Code to highlight" placeholder="Paste your code here"></textarea>
+      <div class="under">
+        <span id="detected" aria-live="polite"></span>
+        <button type="button" class="linkish" id="clear">Clear code</button>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="prev-h">
+      <div class="panel-head">
+        <h2 id="prev-h">Preview on a page</h2>
+        <label class="field">Theme
+          <select id="theme-select"></select>
+        </label>
+        <label class="field">Font
+          <select id="font">
+            <option value="Consolas">Consolas</option>
+            <option value="Cascadia Mono">Cascadia Mono</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Lucida Console">Lucida Console</option>
+            <option value="Menlo">Menlo (Mac)</option>
+            <option value="Source Code Pro">Source Code Pro</option>
+          </select>
+        </label>
+        <label class="field">Size
+          <select id="size">
+            <option>8</option><option>9</option><option selected>10</option><option>10.5</option>
+            <option>11</option><option>12</option><option>14</option>
+          </select>
+        </label>
+        <label class="field">Tabs
+          <select id="tabs">
+            <option value="2">2 spaces</option>
+            <option value="4" selected>4 spaces</option>
+            <option value="8">8 spaces</option>
+            <option value="keep">Keep tabs</option>
+          </select>
+        </label>
+        <label class="check"><input type="checkbox" id="keepbg"> Keep theme background</label>
+        <label class="check"><input type="checkbox" id="linenums"> Line numbers</label>
+      </div>
+
+      <div class="desk">
+        <div class="sheet">
+          <div class="prose-bar" aria-hidden="true"></div>
+          <div class="prose-bar short" aria-hidden="true"></div>
+          <div class="prose-gap" aria-hidden="true"></div>
+          <p class="empty" id="empty">Your highlighted code appears here, as it will look in Word.</p>
+          <pre><code id="out" class="hljs" hidden></code></pre>
+          <div class="prose-gap" aria-hidden="true"></div>
+          <div class="prose-bar" aria-hidden="true"></div>
+          <div class="prose-bar short" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="hint" id="darkhint" hidden>This theme uses light text, which will be hard to read on a white page. Turn on “Keep theme background” or choose a light theme.</div>
+
+      <div class="actions">
+        <button type="button" class="btn primary" id="copy-word">Copy for Word</button>
+        <button type="button" class="btn" id="copy-text">Copy as plain text</button>
+        <span class="status" id="status" role="status" aria-live="polite"></span>
+      </div>
+      <p class="tip">In Word, paste with “Keep Source Formatting” (plain Ctrl+V usually does). Selecting part of the preview and pressing Ctrl+C keeps the colors too.</p>
+    </section>
+  </main>
+</div>
+
+<script src="vendor/highlight/highlight.js"></script>
+<script src="js/manifest.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
