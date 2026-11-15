@@ -5,7 +5,7 @@ mv ".\code-highlighter\code-highlighter-main\*" ".\code-highlighter\"
 rm -Recurse ".\code-highlighter\code-highlighter-main\"
 
 wget -UseBasicParsing "https://github.com/highlightjs/cdn-release/archive/refs/tags/11.12.0.zip" -OutFile "11.12.0.zip"
-if (Get-FileHash -Algorithm SHA256 .\11.12.0.zip).Hash != "E4AFB46FC4F76DDECC77899456092AA761C3289BF29D8C1A961D2CD87EA90781" {
+if (Get-FileHash -Algorithm SHA256 ".\11.12.0.zip").Hash != "E4AFB46FC4F76DDECC77899456092AA761C3289BF29D8C1A961D2CD87EA90781" {
   echo "Error hash mismatch !"
   return;
 }
